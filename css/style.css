@@ -1,0 +1,26 @@
+body{
+
+}
+
+#registratieUsername,
+#registratiePassword,
+#registratieEmail,
+#submitRegister,
+#h1Register,
+.login-help{
+    display: none;
+}
+
+div.usernameFeedback
+{
+    display: none;
+    width: 200px;
+    float: left;
+    height: 38px;
+    line-height: 38px;
+}
+
+img.loadingImage
+{
+    display:none;
+}
