@@ -47,7 +47,7 @@ if(!empty($_POST['username']))
             <p><input type="text" id="registratieUsername" name="username" value="" placeholder="Set Username"></p>
             <div class="usernameFeedback"><img id="loadingImage" src="images/loading.gif" /><span>checking</span></div>
             <p><input type="password" id="registratiePassword" name="password" value="" placeholder="Set Password"></p>
-            <p><input type="password" id="registratieEmail" name="email" value="" placeholder="Set Email"></p>
+            <p><input type="text" id="registratieEmail" name="email" value="" placeholder="Set Email"></p>
             <p id="noAccountYet">
                 No account yet? Click <a id="registratieHere">here</a>
             </p>
