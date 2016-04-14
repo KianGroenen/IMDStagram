@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 14, 2016 at 01:18 PM
+-- Generation Time: Apr 14, 2016 at 02:09 PM
 -- Server version: 5.5.42
 -- PHP Version: 7.0.0
 
@@ -24,16 +24,17 @@ CREATE TABLE `Users` (
   `pk_user_id` int(11) NOT NULL,
   `username` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
-  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `Image` varchar(500) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `Users`
 --
 
-INSERT INTO `Users` (`pk_user_id`, `username`, `password`, `email`) VALUES
-(31, 'fabio', 'ksjldhkqjfsd', 'fazedbfajk@kjdfbdgnf.com'),
-(32, 'jona', 'ngfhgjhgjh', 'hkjgh');
+INSERT INTO `Users` (`pk_user_id`, `username`, `password`, `email`, `Image`) VALUES
+(31, 'fabio', 'ksjldhkqjfsd', 'fazedbfajk@kjdfbdgnf.com', NULL),
+(32, 'jona', 'ngfhgjhgjh', 'hkjgh', NULL);
 
 --
 -- Indexes for dumped tables
