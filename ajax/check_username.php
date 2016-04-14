@@ -5,7 +5,7 @@ spl_autoload_register(function ($class_name) {
 
     $user = new User();
     if(!empty($_POST['username'])) {
-            $user->Username = $_POST['username'];
+            $user->UserName = $_POST['username'];
 
             if($user->UsernameAvailable()) {
                     $response['status'] = 'success';

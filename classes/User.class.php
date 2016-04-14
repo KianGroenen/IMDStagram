@@ -3,20 +3,21 @@
 include_once("Db.class.php");
 class User
 {
-    private $m_sUsername;
+    private $m_sUserName;
     private $m_sPassword;
     private $m_sEmail;
+
     public function __set($p_sProperty, $p_vValue)
     {
         switch($p_sProperty)
         {
-            case "username":
-                $this->m_sUsername = $p_vValue;
+            case "UserName":
+                $this->m_sUserName = $p_vValue;
                 break;
-            case "password":
+            case "Password":
                 $this->m_sPassword = $p_vValue;
                 break;
-            case "email":
+            case "Email":
                 $this->m_sEmail = $p_vValue;
                 break;
         }
@@ -24,20 +25,19 @@ class User
 
     public function __get($p_sProperty)
     {
-        $vResult = null;
         switch($p_sProperty)
         {
-            case "username":
-                $vResult = $this->m_sUsername;
+            case "UserName":
+                return $this->m_sUserName;
                 break;
-            case "password":
-                $vResult = $this->m_sPassword;
+            case "Password":
+                return $this->m_sPassword;
                 break;
-            case "email":
-                $vResult = $this->m_sEmail;
+            case "Email":
+                return $this->m_sEmail;
                 break;
         }
-        return $vResult;
+
     }
 
     public function UsernameAvailable()
@@ -45,7 +45,7 @@ class User
         $PDO = Db::getInstance();
 
         $stm = $PDO->prepare('SELECT * FROM Users WHERE username = :username');
-                $stm->bindValue(':username', $_POST["username"], $PDO::PARAM_STR);
+                $stm->bindValue(':username', $this->m_sUserName, $PDO::PARAM_STR);
                 $stm->execute();
 
                 if($stm->rowCount() > 0) {
@@ -59,9 +59,9 @@ class User
  	{
  		$PDO = Db::getInstance();
  		$stmt = $PDO->prepare("INSERT INTO Users (username, password, email) VALUES (:username, :password, :email);");
- 		$stmt->bindValue(':username', $_POST["username"], PDO::PARAM_STR);
- 		$stmt->bindValue(':password', $_POST["password"], PDO::PARAM_STR);
- 		$stmt->bindValue(':email', $_POST["email"], PDO::PARAM_STR);
+ 		$stmt->bindValue(':username', $this->m_sUserName, PDO::PARAM_STR);
+ 		$stmt->bindValue(':password', $this->m_sPassword, PDO::PARAM_STR);
+ 		$stmt->bindValue(':email', $this->m_sEmail, PDO::PARAM_STR);
 
  		if ($stmt->execute())
  		{

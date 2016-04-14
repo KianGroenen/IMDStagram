@@ -4,12 +4,14 @@ include_once("classes/User.class.php");
 spl_autoload_register(function ($class_name) {
             include 'classes/' .$class_name . '.class.php';
         });
-if(!empty($_POST['username']))
+if(!empty($_POST))
     	{
     		try
  		{
         			$user = new User();
-        			$user->Username = $_POST['username'];
+        			$user->UserName = $_POST['username'];
+        			$user->Password = $_POST['password'];
+        			$user->Email = $_POST['email'];
 
         			if($user->UsernameAvailable()) {
             				$user->Create(); //INSERT USER INTO TABLE
@@ -41,17 +43,17 @@ if(!empty($_POST['username']))
         <h1 id="h1Register">Register to IMDStagram</h1>
 
         <form id="login" method="post" action="">
-            <p><input type="text" id= "loginUsername" name="username" value="" placeholder="Username"></p>
-            <p><input type="password" id="loginPassword" name="password" value="" placeholder="Password"></p>
+            <!--<p><input type="text" id= "loginUsername" name="" value="" placeholder="Username"></p>
+            <p><input type="password" id="loginPassword" name="" value="" placeholder="Password"></p>-->
 
-            <p><input type="text" id="registratieUsername" name="username" value="" placeholder="Set Username"></p>
+            <p><input type="text" id="registratieUsername" name="username" placeholder="Set Username"></p>
             <div class="usernameFeedback"><img id="loadingImage" src="images/loading.gif" /><span>checking</span></div>
-            <p><input type="password" id="registratiePassword" name="password" value="" placeholder="Set Password"></p>
-            <p><input type="text" id="registratieEmail" name="email" value="" placeholder="Set Email"></p>
+            <p><input type="password" id="registratiePassword" name="password" placeholder="Set Password"></p>
+            <p><input type="text" id="registratieEmail" name="email" placeholder="Set Email"></p>
             <p id="noAccountYet">
                 No account yet? Click <a id="registratieHere">here</a>
             </p>
-            <p id="submitLogin"><input type="submit" name="commitlogin" value="Login"></p>
+            <!--<p id="submitLogin"><input type="submit" name="commitlogin" value="Login"></p>-->
             <p id="submitRegister"><input type="submit" name="commitRegister" value="Register"></p>
         </form>
     </div>
