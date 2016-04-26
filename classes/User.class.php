@@ -41,11 +41,11 @@ class User
     }
 
 
-
+    /*je kan zowel met email als met username inloggen fetch_ASSOC vind wat bij mekaar hoort*/
     public function canLogin() {
         if(!empty($this->m_sEmail) && !empty($this->m_sPassword)){
             $PDO = Db::getInstance();
-            $stmt = $PDO->prepare("SELECT * FROM Users WHERE email = :email");
+            $stmt = $PDO->prepare("SELECT * FROM users WHERE email = :email");
             $stmt->bindValue(":email", $this->m_sEmail, PDO::PARAM_STR );
             $stmt->execute();
 
@@ -55,7 +55,7 @@ class User
                 $hash = $result['password'];
 
                 if(password_verify($password, $hash)){
-                    $this->createSession($result['pk_user_id']);
+                    $this->createSession($result['ID']);
                     return true;
                 }
                 else{
@@ -72,7 +72,7 @@ class User
     {
         $PDO = Db::getInstance();
 
-        $stm = $PDO->prepare('SELECT * FROM Users WHERE username = :username');
+        $stm = $PDO->prepare('SELECT * FROM users WHERE username = :username');
                 $stm->bindValue(':username', $this->m_sUserName, $PDO::PARAM_STR);
                 $stm->execute();
 
@@ -107,7 +107,7 @@ class User
 
     private function createSession($id) {
         session_start();
-        $_SESSION["pk_user_id"] = $id;
+        $_SESSION["ID"] = $id;
     }
 
 }
