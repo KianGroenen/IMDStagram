@@ -40,6 +40,34 @@ class User
 
     }
 
+
+
+    public function canLogin() {
+        if(!empty($this->m_sEmail) && !empty($this->m_sPassword)){
+            $PDO = Db::getInstance();
+            $stmt = $PDO->prepare("SELECT * FROM Users WHERE email = :email");
+            $stmt->bindValue(":email", $this->m_sEmail, PDO::PARAM_STR );
+            $stmt->execute();
+
+            if($stmt->rowCount() > 0){
+                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                $password = $this->m_sPassword;
+                $hash = $result['password'];
+
+                if(password_verify($password, $hash)){
+                    $this->createSession($result['pk_user_id']);
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+            else {
+                return false;
+            }
+        }
+    }
+
     public function UsernameAvailable()
     {
         $PDO = Db::getInstance();
@@ -59,13 +87,16 @@ class User
  	{
  		$PDO = Db::getInstance();
  		$stmt = $PDO->prepare("INSERT INTO Users (username, password, email) VALUES (:username, :password, :email);");
+        $options = [ 'cost' => 12];
+        $password = password_hash($this->m_sPassword, PASSWORD_DEFAULT, $options);
  		$stmt->bindValue(':username', $this->m_sUserName, PDO::PARAM_STR);
- 		$stmt->bindValue(':password', $this->m_sPassword, PDO::PARAM_STR);
+ 		$stmt->bindValue(':password', $password, PDO::PARAM_STR);
  		$stmt->bindValue(':email', $this->m_sEmail, PDO::PARAM_STR);
 
  		if ($stmt->execute())
  		{
  			//query went OK!
+            header("Location:login.php");
  		}
 		else
  		{
@@ -73,6 +104,11 @@ class User
     			throw new Exception('Could not create your account!');
  		}
  	}
+
+    private function createSession($id) {
+        session_start();
+        $_SESSION["pk_user_id"] = $id;
+    }
 
 }
 ?>

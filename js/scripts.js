@@ -6,18 +6,7 @@ $(document).ready(function(){
 
     // jQuery methods go here...
     $("#registratieHere").click(function(){
-        $("#loginUsername").hide();
-        $("#loginPassword").hide();
-        $("#noAccountYet").hide();
-        $("#submitLogin").hide();
-        $("#h1Login").hide();
-
-        $("#registratieUsername").show();
-        $("#registratiePassword").show();
-        $("#registratieEmail").show();
-        $("#submitRegister").show();
-        $("#h1Register").show();
-        $(".login-help:nth-child(2)").show();
+        window.location.href='registratie.php';
     });
 
     $("#registratieUsername").on("keyup", function(e) {

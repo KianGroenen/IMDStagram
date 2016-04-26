@@ -2,15 +2,6 @@ body{
 
 }
 
-#registratieUsername,
-#registratiePassword,
-#registratieEmail,
-#submitRegister,
-#h1Register,
-.login-help{
-    display: none;
-}
-
 div.usernameFeedback
 {
     display: none;
