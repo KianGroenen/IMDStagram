@@ -1,21 +1,44 @@
 <?php
-    session_start();
-    spl_autoload_register(function ($class_name) {
-        include 'classes/' .$class_name . '.class.php';
-    });
-    if(isset($_SESSION['loggedin']) && isset($_SESSION['user_id'])){
-        if(!empty($_POST) && !empty($_POST["post"])){
-            $post = new instaPost();
-            $post->Post = $_POST["post"];
-            $post->UserID = $_SESSION["user_id"];
-            $post->Save();
+
+    include_once("classes/Db.class.php");
+    include_once("classes/Search.class.php");
+    include_once("classes/User.class.php");
+
+    if (isset($_POST['submit'])) {
+        if (isset($_GET['go'])) {
+            
+            $zoeken = new Search();
+            $zoeken->Search = $_POST["name"];
+            $check = trim($_POST["name"]);
+            $detectHashT = substr($check, 0, 1);
+            
+            $resultSearch = $zoeken->Searching();
+            
+            if ($detectHashT == "#") {
+                echo "true";
+                ?><pre><?php print_r($resultSearch); ?></pre><?php
+                //create foreach loop and loop through result set
+                $i = 0;
+                foreach($resultSearch as $row) {
+                    echo $resultSearch[$i]['ID'] . " ";
+                    echo $resultSearch[$i]['user_ID'] . " ";
+                    echo $resultSearch[$i]['tekst'] . " ";
+                    echo $resultSearch[$i]['foto'] . " ";
+                    echo "<br />";
+                    $i++;
+                }
+            } else {         
+                ?><pre><?php print_r($resultSearch); ?></pre><?php
+                //create foreach loop and loop through result set
+                $i = 0;
+                foreach($resultSearch as $row) {
+                    echo $resultSearch[$i]['username'];
+                    echo "<br />";
+                    $i++;
+                }
+            }
         }
     }
-    else {
-        header('Location: index.php');
-    }
-    $post = new instaPost();
-    $results = $post->GetAll();
 ?><!doctype html>
 <html lang="en">
 <head>
@@ -23,6 +46,9 @@
     <title>Document</title>
 </head>
 <body>
-
+    <form  method="post" action="index.php?go"  id="searchform"> 
+        <input  type="text" name="name"> 
+        <input  type="submit" name="submit" value="Search"> 
+    </form>
 </body>
 </html>

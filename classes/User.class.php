@@ -103,8 +103,8 @@ class User
     			// er zijn geen query resultaten, dus query is gefaald
     			throw new Exception('Could not create your account!');
  		}
- 	}
-
+ 	} 
+    
     private function createSession($id) {
         session_start();
         $_SESSION["ID"] = $id;
