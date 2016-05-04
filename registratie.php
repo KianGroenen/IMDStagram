@@ -12,6 +12,12 @@ if(!empty($_POST))
         			$user->UserName = $_POST['username'];
         			$user->Password = $_POST['password'];
         			$user->Email = $_POST['email'];
+                    
+                    if($_POST['prive']){
+                        $user->Prive = true;
+                    }
+                
+                print_r($_POST);
 
         			if($user->UsernameAvailable()) {
             				$user->Create(); //INSERT USER INTO TABLE
@@ -47,6 +53,7 @@ if(!empty($_POST))
             <div class="usernameFeedback"><img id="loadingImage" src="images/loading.gif" /><span>checking</span></div>
             <p><input type="password" id="registratiePassword" name="password" placeholder="Set Password"></p>
             <p><input type="text" id="registratieEmail" name="email" placeholder="Set Email"></p>
+             <p><label for="prive">Make your account private.</label><input type="checkbox" name="prive"></p>
 
             <p id="submitRegister"><input type="submit" name="commitRegister" value="Register"></p>
         </form>
