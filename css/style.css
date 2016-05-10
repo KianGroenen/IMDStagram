@@ -39,3 +39,9 @@ img.loadingImage
 #hartje:hover{
     cursor: pointer;
 }
+
+#searchResult{
+    text-decoration: none;
+    color:green;
+    cursor:pointer;
+}

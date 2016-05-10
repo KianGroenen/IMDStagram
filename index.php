@@ -35,7 +35,7 @@
                 //create foreach loop and loop through result set
                 $i = 0;
                 foreach($resultSearch as $row) {
-                    echo $resultSearch[$i]['username'];
+                    echo "<a href='detailPagina.php' rel='detailPagina' id='searchResult'>".$resultSearch[$i]['username']."<a/>";
                     echo "<br />";
                     $i++;
                 }
