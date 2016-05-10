@@ -10,12 +10,13 @@
     <title><?php
 
         $PDO = Db::getInstance();
-        $stmt = $PDO->prepare("SELECT * FROM users WHERE ID = '2'");
+        $stmt = $PDO->prepare("SELECT * FROM users WHERE ID = '27'");
         $stmt->execute();
         $data = $stmt->fetch();
         echo $data['username'];
 
         ?></title>
+    <link rel="stylesheet" href="css/style.css">
 
 </head>
 <body>
@@ -23,8 +24,9 @@
 
     </nav>
     <div id="Profiel">
-        <img src="" alt="" id="profielfoto">
-        <p id="username"></p>
+        <?php echo '<img src="postImages/'.$data['Avatar'].'" alt="avatarProfielFoto" id="profielfoto">' ?>
+        <?php echo "<p id='username'>".$data['username']."</p>" ?>
+        <a href="#" id="profielBewerken">Profiel Bewerken</a>
     </div>
 
     <?php

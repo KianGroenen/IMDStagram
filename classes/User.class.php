@@ -7,6 +7,7 @@ class User
     private $m_sPassword;
     private $m_sEmail;
     private $m_bPrive;
+    private $m_sProfilePicture;
 
     public function __set($p_sProperty, $p_vValue)
     {
@@ -23,6 +24,9 @@ class User
                 break;
             case "Prive":
                 $this->m_bPrive = $p_vValue;
+                break;
+            case "ProfilePicture":
+                $this->m_sProfilePicture = $p_vValue;
                 break;
         }
     }
@@ -42,6 +46,9 @@ class User
                 break;
             case "Prive":
                 return $this->m_bPrive;
+                break;
+            case "ProfilePicture":
+                return $this->m_sProfilePicture;
                 break;
         }
 
@@ -93,13 +100,14 @@ class User
 	public function Create()
  	{
  		$PDO = Db::getInstance();
- 		$stmt = $PDO->prepare("INSERT INTO Users (username, password, email, prive) VALUES (:username, :password, :email, :prive);");
+ 		$stmt = $PDO->prepare("INSERT INTO users (username, password, email, prive, Avatar) VALUES (:username, :password, :email, :prive, :profilepicture);");
         $options = [ 'cost' => 12];
         $password = password_hash($this->m_sPassword, PASSWORD_DEFAULT, $options);
  		$stmt->bindValue(':username', $this->m_sUserName, PDO::PARAM_STR);
  		$stmt->bindValue(':password', $password, PDO::PARAM_STR);
  		$stmt->bindValue(':email', $this->m_sEmail, PDO::PARAM_STR);
- 		$stmt->bindValue(':prive', $this->m_bPrive, PDO::PARAM_BOOL);
+        $stmt->bindValue(':prive', $this->m_bPrive, PDO::PARAM_BOOL);
+        $stmt->bindValue(':profilepicture', $this->m_sProfilePicture, PDO::PARAM_STR);
 
  		if ($stmt->execute())
  		{

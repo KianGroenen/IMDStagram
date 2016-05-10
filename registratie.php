@@ -6,18 +6,25 @@ spl_autoload_register(function ($class_name) {
         });
 if(!empty($_POST))
     	{
-    		try
- 		{
-        			$user = new User();
-        			$user->UserName = $_POST['username'];
-        			$user->Password = $_POST['password'];
-        			$user->Email = $_POST['email'];
-                    
-                    if($_POST['prive']){
-                        $user->Prive = true;
-                    }
-                
-                print_r($_POST);
+            $user = new User();
+            $user->UserName = $_POST['username'];
+            $user->Password = $_POST['password'];
+            $user->Email = $_POST['email'];
+
+            if($_POST['prive']){
+                $user->Prive = true;
+            }else{
+                $user->Prive = false;
+            }
+
+            if($_POST['Avatar']) {
+                $user->ProfilePicture = $_POST['Avatar'];
+            }else{
+                $user->ProfilePicture = "dickbutt.jpg";
+            }
+            print_r($_POST);
+
+        try{
 
         			if($user->UsernameAvailable()) {
             				$user->Create(); //INSERT USER INTO TABLE
@@ -54,6 +61,8 @@ if(!empty($_POST))
             <p><input type="password" id="registratiePassword" name="password" placeholder="Set Password"></p>
             <p><input type="text" id="registratieEmail" name="email" placeholder="Set Email"></p>
              <p><label for="prive">Make your account private.</label><input type="checkbox" name="prive"></p>
+            <label for="Avatar"> upload profile picture</label>
+            <input type="file" name="Avatar" id="uploadProfilePicture">
 
             <p id="submitRegister"><input type="submit" name="commitRegister" value="Register"></p>
         </form>

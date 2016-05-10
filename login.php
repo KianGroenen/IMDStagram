@@ -12,7 +12,7 @@ if(!empty($_POST)){
 
         if($userLogin->canLogin()){
             $_SESSION['loggedin'] = true;
-            header('Location: registratie.php');
+            header('Location: index.php');
         }
         else {
             echo "Foutieve Login gegevens";

@@ -45,3 +45,29 @@ img.loadingImage
     color:green;
     cursor:pointer;
 }
+
+#profielfoto{
+    width: 250px;
+    height: 250px;
+    margin-right:50px;
+    float:left;
+    border-radius: 150px;
+}
+
+#username{
+    font-family: Helvetica;
+    font-size: 2em;
+}
+
+#profielBewerken{
+    text-decoration: none;
+    color: white;
+    cursor:pointer;
+    border: 1px solid black;
+    padding: 5px;
+    background-color: limegreen;
+}
+
+#profielBewerken:hover{
+    background-color: forestgreen;
+}
