@@ -3,6 +3,9 @@
     include_once("classes/Db.class.php");
     include_once("classes/Search.class.php");
     include_once("classes/User.class.php");
+    include_once("classes/LikePost.class.php");
+
+    $like = new LikePost();
 
     if (isset($_POST['submit'])) {
         if (isset($_GET['go'])) {
@@ -44,6 +47,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <script src="js/like.js" type="text/javascript"></script>
 </head>
 <body>
     <form  method="post" action="index.php?go"  id="searchform"> 
