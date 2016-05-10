@@ -42,6 +42,23 @@
             }
         }
     }
+
+if(!empty($_POST["hartje"])){
+    $PDO = Db::getInstance();
+    $stmt = $PDO->prepare("SELECT * FROM posts WHERE user_ID = :user_ID");
+    $stmt->bindValue(':user_ID', $this->m_iUserID, PDO::PARAM_INT);
+    $stmt->execute();
+
+    $imgID = 0;
+    while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $imgURL = $result['foto'];
+        echo"<img id =\"$imgID\" src=\"$imgURL\"/>";
+        $imgID = $imgID + 1;
+    }
+}
+
+
+
 ?><!doctype html>
 <html lang="en">
 <head>
@@ -56,5 +73,14 @@
         <input  type="text" name="name"> 
         <input  type="submit" name="submit" value="Search"> 
     </form>
+
+    <a href="#"><div id="InstaPost" rel="Instapost Fabio"></div></a>
+    <a href="#"><div  id="hartje" name="like" ></div></a>
+
+    <a href="#"><div id="InstaPost2" rel="Instapost Fabio"></div></a>
+    <a href="#"><div  id="hartje2" name="like" ></div></a>
+
+    <a href="#"><div id="InstaPost3" rel="Instapost Fabio"></div></a>
+    <a href="#"><div  id="hartje3" name="like" ></div></a>
 </body>
 </html>

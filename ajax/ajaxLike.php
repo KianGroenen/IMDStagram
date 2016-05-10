@@ -4,7 +4,7 @@ include_once ("LikePost.class.php");
 $like = new LikePost();
 
 // post id moet uniek per post zijn om enkel 1 foto te liken uit de lijst (lijst is er nog niet)
-if(!empty($_POST['post_id']))
+if(isset($_POST['id']))
 {
     $like->Post_ID = $_POST['post_id'];
     $like->liker_ID = $_SESSION["ID"];

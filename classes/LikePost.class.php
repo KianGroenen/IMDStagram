@@ -68,7 +68,7 @@ class LikePost{
     public function getUserLikes(){
         $PDO = Db::getInstance();
 
-        $stmt = $PDO->prepare("SELECT post_id FROM likes WHERE liker_id = :liker_id");
+        $stmt = $PDO->prepare("SELECT post_ID FROM likes WHERE liker_ID = :liker_ID");
         $stmt->bindValue(":liker_id", $this->m_iliker_ID, PDO::PARAM_INT);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);

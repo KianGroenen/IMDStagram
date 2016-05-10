@@ -7,7 +7,7 @@ class Db
 
     public static function getInstance() {
         if( is_null(self::$conn)) {
-            self::$conn = new PDO("mysql:host=localhost;dbname=IMDStagram", "root", "");
+            self::$conn = new PDO("mysql:host=localhost;dbname=IMDStagram", "root", "root");
         } 
  		return self::$conn;
  	}

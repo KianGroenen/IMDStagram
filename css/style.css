@@ -15,3 +15,27 @@ img.loadingImage
 {
     display:none;
 }
+
+#InstaPost, #InstaPost2, #InstaPost3{
+    width: 293px;
+    height: 293px;
+    position: relative;
+    float:left;
+    background-image: url("../images/InstaPost.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#hartje, #hartje2, #hartje3{
+    width: 30px;
+    height: 30px;
+    float:left;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-image: url("../images/unlike.png");
+}
+
+#hartje:hover{
+    cursor: pointer;
+}
