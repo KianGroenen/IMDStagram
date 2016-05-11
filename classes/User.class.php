@@ -9,6 +9,7 @@ class User
     private $m_bPrive;
     private $m_sProfilePicture;
 
+
     public function __set($p_sProperty, $p_vValue)
     {
         switch($p_sProperty)

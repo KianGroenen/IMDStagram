@@ -1,6 +1,7 @@
 <?php
 
 include_once("classes/post.class.php");
+include_once("classes/User.class.php");
 
 session_start();
 /*print_r($_SESSION);*/
