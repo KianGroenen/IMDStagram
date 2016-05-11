@@ -2,6 +2,59 @@ body{
 
 }
 
+nav{
+    height: 100px;
+    width: 100%;
+    position: relative;
+    border-bottom: 1px solid grey;
+    display: inline-flex;
+
+}
+
+nav ul li{
+    list-style: none;
+    flex-direction: row;
+}
+
+nav ul li:nth-child(2){
+    float: left;
+    margin-top: -80px;
+    margin-left: 500px;
+}
+
+nav ul li:nth-child(3){
+    float: right;
+    margin-top: -110px;
+    margin-left: 500px;
+}
+
+
+
+#IG_logo{
+    background-image: url("../images/IG_logo.svg");
+    width: 300px;
+    height: 100px;
+    backgruond-size: cover;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+#searchform{
+
+}
+
+#MyProfile{
+    width: 80px;
+    height: 80px;
+    background-image: url("../images/MyProfile.png");
+    backgruond-size: cover;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    cursor: pointer;
+
+}
+
 div.usernameFeedback
 {
     display: none;
@@ -46,10 +99,22 @@ img.loadingImage
     cursor:pointer;
 }
 
+#Profiel{
+    width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#topProfiel{
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 #profielfoto{
-    width: 250px;
-    height: 250px;
-    margin-right:50px;
+    width: 200px;
+    height: 200px;
+    margin-right:100px;
     float:left;
     border-radius: 150px;
 }
@@ -59,15 +124,18 @@ img.loadingImage
     font-size: 2em;
 }
 
-#profielBewerken{
+#volgen{
     text-decoration: none;
-    color: white;
+    color: dodgerblue;
     cursor:pointer;
-    border: 1px solid black;
+    border: 1px solid dodgerblue;
     padding: 5px;
-    background-color: limegreen;
+    margin-top: -60px;
+    float: right;
 }
 
-#profielBewerken:hover{
+#volgen:hover{
     background-color: forestgreen;
+    color: white;
+    border: none;
 }

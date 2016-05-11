@@ -20,13 +20,19 @@
 
 </head>
 <body>
-    <nav>
+<?php include_once("include_navigation.php"); ?>
 
-    </nav>
     <div id="Profiel">
-        <?php echo '<img src="profilePictures/'.$data['Avatar'].'" alt="avatarProfielFoto" id="profielfoto">' ?>
-        <?php echo "<p id='username'>".$data['username']."</p>" ?>
-        <a href="#" id="profielBewerken">Profiel Bewerken</a>
+        <div id="topProfiel">
+            <?php echo '<img src="profilePictures/'.$data['Avatar'].'" alt="avatarProfielFoto" id="profielfoto">' ?>
+            <?php echo "<p id='username'>".$data['username']."</p>" ?>
+            <a href="#" id="volgen">Volgen</a>
+        </div>
+        <div id="gallerij">
+
+
+
+        </div>
     </div>
 
     <?php

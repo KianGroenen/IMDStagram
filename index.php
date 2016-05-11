@@ -76,11 +76,5 @@ if(!empty($_POST["hartje"])){
 
     <a href="#"><div id="InstaPost" rel="Instapost Fabio"></div></a>
     <a href="#"><div  id="hartje" name="like" ></div></a>
-
-    <a href="#"><div id="InstaPost2" rel="Instapost Fabio"></div></a>
-    <a href="#"><div  id="hartje2" name="like" ></div></a>
-
-    <a href="#"><div id="InstaPost3" rel="Instapost Fabio"></div></a>
-    <a href="#"><div  id="hartje3" name="like" ></div></a>
 </body>
 </html>
