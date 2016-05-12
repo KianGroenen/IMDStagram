@@ -58,10 +58,10 @@ class User
 
     /*je kan zowel met email als met username inloggen fetch_ASSOC vind wat bij mekaar hoort*/
     public function canLogin() {
-        if(!empty($this->m_sEmail) && !empty($this->m_sPassword)){
+        if(!empty($this->m_sUserName) && !empty($this->m_sPassword)){
             $PDO = Db::getInstance();
-            $stmt = $PDO->prepare("SELECT * FROM users WHERE email = :email");
-            $stmt->bindValue(":email", $this->m_sEmail, PDO::PARAM_STR );
+            $stmt = $PDO->prepare("SELECT * FROM users WHERE username = :username");
+            $stmt->bindValue(":username", $this->m_sUserName, PDO::PARAM_STR );
             $stmt->execute();
 
             if($stmt->rowCount() > 0){

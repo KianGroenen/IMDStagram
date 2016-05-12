@@ -5,7 +5,7 @@ include_once("classes/User.class.php");
 if(!empty($_POST)){
     if(!empty($_POST["loginUsername"]) && !empty($_POST["loginPassword"])){
         $userLogin = new User();
-        $userLogin->Email = $_POST["loginUsername"];
+        $userLogin->UserName = $_POST["loginUsername"];
         $userLogin->Password = $_POST["loginPassword"];
 
         //echo $userLogin->canLogin();
@@ -14,10 +14,11 @@ if(!empty($_POST)){
             $_SESSION['loggedin'] = true;
             header('Location: index.php');
         }
-        else {
+        else{
             echo "Foutieve Login gegevens";
         }
     }else{
+
     }
 }
 
