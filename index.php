@@ -5,6 +5,10 @@
     include_once("classes/User.class.php");
     include_once("classes/LikePost.class.php");
 
+session_start();
+print_r($_SESSION);
+$loggedInUser = $_SESSION['ID'];
+
     $like = new LikePost();
 
     if (isset($_POST['submit'])) {
@@ -69,12 +73,12 @@ if(!empty($_POST["hartje"])){
     <script src="js/like.js" type="text/javascript"></script>
 </head>
 <body>
-    <form  method="post" action="index.php?go"  id="searchform"> 
-        <input  type="text" name="name"> 
-        <input  type="submit" name="submit" value="Search"> 
-    </form>
+<?php include_once("include_navigation.php"); ?>
 
-    <a href="#"><div id="InstaPost" rel="Instapost Fabio"></div></a>
-    <a href="#"><div  id="hartje" name="like" ></div></a>
+    <div id="gallerij">
+
+
+
+    </div>
 </body>
 </html>

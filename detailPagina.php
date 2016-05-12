@@ -10,7 +10,7 @@
     <title><?php
 
         $PDO = Db::getInstance();
-        $stmt = $PDO->prepare("SELECT * FROM users WHERE ID = '19'");
+        $stmt = $PDO->prepare("SELECT * FROM users WHERE ID = $_SESSION[ID]");
         $stmt->execute();
         $data = $stmt->fetch();
         echo $data['username'];

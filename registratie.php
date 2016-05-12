@@ -50,9 +50,11 @@ if(!empty($_POST))
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<?php include_once("include_navigation.php"); ?>
+
 <section class="login">
 
-
+<div id="RegisterArea">
         <h1 id="h1Register">Register to IMDStagram</h1>
 
         <form id="Register" method="post" action="">
@@ -61,7 +63,7 @@ if(!empty($_POST))
             <p><input type="password" id="registratiePassword" name="password" placeholder="Set Password"></p>
             <p><input type="text" id="registratieEmail" name="email" placeholder="Set Email"></p>
              <p><label for="prive">Make your account private.</label><input type="checkbox" name="prive"></p>
-            <label for="Avatar"> upload profile picture</label>
+            <label for="Avatar">Upload profile picture</label>
             <input type="file" name="Avatar" id="uploadProfilePicture">
 
             <p id="submitRegister"><input type="submit" name="commitRegister" value="Register"></p>
@@ -70,7 +72,7 @@ if(!empty($_POST))
     <div class="backToLogin">
         <a href="login.php">Back to login?</a>
     </div>
-
+</div>
 
 </section>
 

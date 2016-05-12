@@ -33,20 +33,26 @@ if(!empty($_POST)){
     <meta charset="UTF-8">
     <title>IMDStagram login</title>
     <script src="js/scripts.js" type="javascript"></script>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<h1 id="h1Login">Login to IMDStagram</h1>
+<?php include_once("include_navigation.php"); ?>
 
-<form id="Login" action="" method="post">
-    <p><input id="loginUsername" name= "loginUsername" type="text"></p>
-    <p><input id="loginPassword" name="loginPassword" type="password"></p>
-    <p id="submitLogin"><input type="submit" name="commitlogin" value="Login"></p>
-</form>
+<div id="loginArea">
+    <h1 id="h1Login">Login to IMDStagram</h1>
 
-<p id="noAccountYet">
-    No account yet? Click <a href="registratie.php" type="button" id="registratieHere">here</a>
-</p>
+    <form id="Login" action="" method="post">
+        <p><input id="loginUsername" name= "loginUsername" type="text" placeholder="username"></p>
+        <p><input id="loginPassword" name="loginPassword" type="password" placeholder="password"></p>
+        <p id="submitLogin"><input type="submit" name="commitlogin" value="Login"></p>
+    </form>
+
+    <p id="noAccountYet">
+        No account yet? Click <a href="registratie.php" type="button" id="registratieHere">here</a>
+    </p>
+
+</div>
 
 </body>
 </html>

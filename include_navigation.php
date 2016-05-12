@@ -5,6 +5,9 @@ include_once("classes/Search.class.php");
 include_once("classes/User.class.php");
 include_once("classes/LikePost.class.php");
 
+$user = $_SESSION['ID'];
+//print_r($user);
+
 if (isset($_POST['submit'])) {
     if (isset($_GET['go'])) {
 
@@ -41,7 +44,22 @@ if (isset($_POST['submit'])) {
     }
 }
 
+$conn = Db::getInstance();
+
+$statement = $conn->prepare("SELECT Avatar FROM users WHERE ID = $user");
+$statement->execute();
+// FETCH???
+$AvatarLink = $statement->fetch(PDO::FETCH_ASSOC);
+//print_r($AvatarLink); //print_r geeft altijd array terug
+
 ?>
+
+<style>
+    #MyProfile{background-image: url("<?php
+
+            echo "../images/".$AvatarLink['Avatar'];
+
+ ?>")}</style>
 
 <nav>
     <ul>
@@ -51,6 +69,6 @@ if (isset($_POST['submit'])) {
                 <input  type="submit" name="submit" value="Search">
             </form>
         </li>
-        <li id="MyProfile"><a href="index.php"></a></li>
+        <li id="MyProfile" name="ID"><a href="index.php"></a></li>
     </ul>
 </nav>
