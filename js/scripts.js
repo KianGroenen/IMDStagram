@@ -9,10 +9,10 @@ $(document).ready(function(){
         window.location.href='registratie.php';
     });
 
-    $("#registratieUsername").on("keyup", function(e) {
+    $("#Username").on("keyup", function(e) {
         "use strict";
         // username ophalen uit tekstveld
-        var username = $("#registratieUsername").val();
+        var username = $("#Username").val();
         $(".usernameFeedback").show();
 
         // Ajax call: verzenden naar php bestand om query uit te voeren
@@ -22,9 +22,9 @@ $(document).ready(function(){
                 $('.usernameFeedback span').text(response.message);
 
                 if(response.status === 'error') {
-                    $('#submitRegister').prop('disabled', true);
+                    $('#submit').prop('disabled', true);
                 } else {
-                    $('#submitRegister').prop('disabled', false);
+                    $('#submit').prop('disabled', false);
                 }
             });
         e.preventDefault();

@@ -61,7 +61,7 @@ if(!empty($_POST))
         <h1 id="h1Register">Register to IMDStagram</h1>
 
         <form id="Register" method="post" action="">
-            <p><input type="text" id="registratieUsername" name="username" placeholder="Set Username"></p>
+            <p><input type="text" id="Username" name="username" placeholder="Set Username"></p>
             <div class="usernameFeedback"><img id="loadingImage" src="images/loading.gif" /><span>checking</span></div>
             <p><input type="password" id="registratiePassword" name="password" placeholder="Set Password"></p>
             <p><input type="text" id="registratieEmail" name="email" placeholder="Set Email"></p>
@@ -69,7 +69,7 @@ if(!empty($_POST))
             <label for="Avatar">Upload profile picture</label>
             <input type="file" name="Avatar" id="uploadProfilePicture">
 
-            <p id="submitRegister"><input type="submit" name="commitRegister" value="Register"></p>
+            <p id="submit"><input type="submit" name="commitRegister" value="Register"></p>
         </form>
 
     <div class="backToLogin">

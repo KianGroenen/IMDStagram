@@ -27,7 +27,7 @@ include_once("classes/User.class.php");
     <div id="Profiel">
         <div id="topProfiel">
             <?php echo '<img src="profilePictures/'.$data['Avatar'].'" alt="avatarProfielFoto" id="profielfoto">' ?>
-            <?php echo "<p id='username'>".$data['username']."</p>" ?>
+            <?php echo "<p id='detailUsername'>".$data['username']."</p>" ?>
             <a href="#" id="volgen">Volgen</a>
         </div>
         <div id="gallerij">
