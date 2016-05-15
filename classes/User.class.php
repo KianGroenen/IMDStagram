@@ -113,7 +113,8 @@ class User
  		if ($stmt->execute())
  		{
  			//query went OK!
-            header("Location:login.php");
+            header('Location: login.php');
+
  		}
 		else
  		{

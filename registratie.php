@@ -1,5 +1,6 @@
 <?php
 
+
 include_once("classes/User.class.php");
 spl_autoload_register(function ($class_name) {
             include 'classes/' .$class_name . '.class.php';
@@ -11,7 +12,7 @@ if(!empty($_POST))
             $user->Password = $_POST['password'];
             $user->Email = $_POST['email'];
 
-            if($_POST['prive']){
+            if(isset($_POST['prive'])){
                 $user->Prive = true;
             }else{
                 $user->Prive = false;
@@ -22,12 +23,13 @@ if(!empty($_POST))
             }else{
                 $user->ProfilePicture = "dickbutt.jpg";
             }
-            print_r($_POST);
+            //print_r($_POST);
 
         try{
 
         			if($user->UsernameAvailable()) {
             				$user->Create(); //INSERT USER INTO TABLE
+
             				$feedback = "Thanks for signing up!";
             			} else {
             				$feedback = "Username has already been taken!";
@@ -39,6 +41,7 @@ if(!empty($_POST))
         		}
 
  	}
+
 
 ?><!doctype html>
 <html lang="en">
@@ -62,7 +65,7 @@ if(!empty($_POST))
             <div class="usernameFeedback"><img id="loadingImage" src="images/loading.gif" /><span>checking</span></div>
             <p><input type="password" id="registratiePassword" name="password" placeholder="Set Password"></p>
             <p><input type="text" id="registratieEmail" name="email" placeholder="Set Email"></p>
-             <p><label for="prive">Make your account private.</label><input type="checkbox" name="prive"></p>
+             <p><label for="prive">Make your account private.</label><input type="checkbox" name="prive" value = 0 ></p>
             <label for="Avatar">Upload profile picture</label>
             <input type="file" name="Avatar" id="uploadProfilePicture">
 

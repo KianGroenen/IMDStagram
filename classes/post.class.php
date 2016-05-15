@@ -112,7 +112,6 @@ include_once("classes/Db.class.php");
             // uploaden naar databank
              $conn = Db::getInstance();
         
-        
             $statement = $conn->prepare("INSERT INTO posts (user_ID, tekst, foto) VALUES (:user_ID, :tekst, :foto)");
             $statement->bindvalue(":user_ID", $this->m_iUserID);
             $statement->bindvalue(":tekst", $this->m_sPostText);
