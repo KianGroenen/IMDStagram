@@ -8,6 +8,7 @@ class User
     private $m_sEmail;
     private $m_bPrive;
     private $m_sProfilePicture;
+    private $m_sID;
 
 
     public function __set($p_sProperty, $p_vValue)
@@ -28,6 +29,9 @@ class User
                 break;
             case "ProfilePicture":
                 $this->m_sProfilePicture = $p_vValue;
+                break;
+            case "ID":
+                $this->m_sID = $p_vValue;
                 break;
         }
     }
@@ -50,6 +54,9 @@ class User
                 break;
             case "ProfilePicture":
                 return $this->m_sProfilePicture;
+                break;
+            case "ID":
+                return $this->m_sID;
                 break;
         }
 
@@ -98,6 +105,66 @@ class User
          }
  	}
     
+    
+    public function Edit() {
+        $PDO = Db::getInstance();
+        $options = ['cost' => 12];
+        $protectedPW = password_hash($this->m_sPassword, PASSWORD_DEFAULT, $options);
+        /*$sql = "UPDATE users SET 
+                    username = :username, 
+                    password = :password, 
+                    email = :email,  
+                    Avatar = :Avatar,  
+                    prive = :prive  
+                WHERE ID = :ID";*/
+        $sql = "UPDATE users SET ";
+        
+        if (!empty($this->m_sUserName)) {
+            $sql .= "username = :username, ";
+        }
+        
+        if (!empty($this->m_sPassword)) {
+            $sql .= "password = :password, ";
+        }
+        
+        if (!empty($this->m_sEmail)) {
+            $sql .= "email = :email, ";
+        }
+        
+        if (!empty($this->m_sProfilePicture || $this->m_sProfilePicture != NULL )) {
+            $sql .= "Avatar = :Avatar, ";
+        }
+        
+        $sql .= "prive = :prive ";
+        $sql .= "WHERE ID = :ID";
+        
+        $statement = $PDO->prepare($sql);
+        if (!empty($this->m_sUserName)) {
+            $statement->bindValue(':username', $this->m_sUserName, PDO::PARAM_STR);
+        }
+        
+        if (!empty($this->m_sPassword)) {
+            $statement->bindValue(':password', $protectedPW, PDO::PARAM_STR);
+        }
+ 		
+        if (!empty($this->m_sEmail)) {
+            $statement->bindValue(':email', $this->m_sEmail, PDO::PARAM_STR);
+        }
+ 		
+        if (!empty($this->m_sProfilePicture || $this->m_sProfilePicture != NULL )) {
+            $statement->bindValue(':Avatar', $this->m_sProfilePicture, PDO::PARAM_STR);
+        }
+        
+        $statement->bindValue(':prive', $this->m_bPrive, PDO::PARAM_BOOL);
+        $statement->bindValue(':ID', $this->m_sID, PDO::PARAM_STR);
+        
+        if ($statement->execute()) {
+            print_r("Profile Updated");
+        } else {
+            throw new exception("Could not update your account!");
+        }
+    }
+    
 	public function Create()
  	{
  		$PDO = Db::getInstance();
@@ -113,8 +180,7 @@ class User
  		if ($stmt->execute())
  		{
  			//query went OK!
-            header('Location: login.php');
-
+            header("Location: login.php");
  		}
 		else
  		{
