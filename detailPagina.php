@@ -13,7 +13,7 @@ $PostsOphalen = new GetDetailPosts();
 $PostsOphalen->UserID = $_SESSION['ID'];
 $posts = $PostsOphalen->getPosts();
 
-print_r($posts);
+//print_r($posts);
 $i = 0;
 
 ?>

@@ -124,6 +124,7 @@ img.loadingImage
 
 #topProfiel{
     width: 500px;
+    height: 250px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -159,5 +160,6 @@ img.loadingImage
 
 .gallerijPost{
     width: 33%;
+    height: 250px;
 
 }
