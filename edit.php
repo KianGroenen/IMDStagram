@@ -59,7 +59,6 @@
     <p id="submitEdit">
         <input type="submit" name="submit" value="Edit">
     </p>
-    <p><?php echo $feedback ?></p>
 </form>
 </div>
 </body>
