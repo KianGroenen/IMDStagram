@@ -2,7 +2,7 @@
 session_start();
 print_r($_SESSION);
 
-include_once("classes/post.class.php");
+include_once("classes/Post.class.php");
 include_once("classes/User.class.php");
 
 if(!empty($_POST))

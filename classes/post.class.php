@@ -1,6 +1,6 @@
 <?php
 include_once("classes/Db.class.php");
-    class post
+    class Post
     {
         
         private $m_iUserID;
@@ -106,11 +106,8 @@ include_once("classes/Db.class.php");
                 throw new Exception('error uploading file.');
             }
             
-            
-            
-            
             // uploaden naar databank
-             $conn = Db::getInstance();
+            $conn = Db::getInstance();
         
             $statement = $conn->prepare("INSERT INTO posts (user_ID, tekst, foto) VALUES (:user_ID, :tekst, :foto)");
             $statement->bindvalue(":user_ID", $this->m_iUserID);
