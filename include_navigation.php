@@ -15,8 +15,8 @@ if(isset($_SESSION)) {
     $statement->execute();
 // FETCH???
     $AvatarLink = $statement->fetch(PDO::FETCH_ASSOC);
-    print_r($AvatarLink); //print_r geeft altijd array terug
-    print_r($AvatarLink['Avatar']);
+    //print_r($AvatarLink); //print_r geeft altijd array terug
+    //print_r($AvatarLink['Avatar']);
 
 }
 

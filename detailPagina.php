@@ -33,7 +33,6 @@ include_once("classes/User.class.php");
         <div id="gallerij">
 
 
-
         </div>
     </div>
 
