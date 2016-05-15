@@ -1,13 +1,12 @@
 <?php
+session_start();
+print_r($_SESSION);
+$loggedInUser = $_SESSION['ID'];
 
     include_once("classes/Db.class.php");
     include_once("classes/Search.class.php");
     include_once("classes/User.class.php");
     include_once("classes/LikePost.class.php");
-
-session_start();
-print_r($_SESSION);
-$loggedInUser = $_SESSION['ID'];
 
     $like = new LikePost();
 

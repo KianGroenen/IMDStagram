@@ -4,9 +4,21 @@ include_once("classes/Db.class.php");
 include_once("classes/Search.class.php");
 include_once("classes/User.class.php");
 include_once("classes/LikePost.class.php");
+if(isset($_SESSION)) {
+    $user = $_SESSION['ID'];
+    //print_r($user);
 
-$user = $_SESSION['ID'];
-//print_r($user);
+
+    $conn = Db::getInstance();
+    $statement = $conn->prepare("SELECT Avatar FROM users WHERE ID = :id");
+    $statement->bindValue(':id', $user, PDO::PARAM_STR);
+    $statement->execute();
+// FETCH???
+    $AvatarLink = $statement->fetch(PDO::FETCH_ASSOC);
+    print_r($AvatarLink); //print_r geeft altijd array terug
+    print_r($AvatarLink['Avatar']);
+
+}
 
 if (isset($_POST['submit'])) {
     if (isset($_GET['go'])) {
@@ -44,22 +56,9 @@ if (isset($_POST['submit'])) {
     }
 }
 
-$conn = Db::getInstance();
 
-$statement = $conn->prepare("SELECT Avatar FROM users WHERE ID = $user");
-$statement->execute();
-// FETCH???
-$AvatarLink = $statement->fetch(PDO::FETCH_ASSOC);
-//print_r($AvatarLink); //print_r geeft altijd array terug
 
 ?>
-
-<style>
-    #MyProfile{background-image: url("<?php
-
-            echo "../images/".$AvatarLink['Avatar'];
-
- ?>")}</style>
 
 <nav>
     <ul>
@@ -69,6 +68,12 @@ $AvatarLink = $statement->fetch(PDO::FETCH_ASSOC);
                 <input  type="submit" name="submit" value="Search">
             </form>
         </li>
-        <li id="MyProfile" name="ID"><a href="index.php"></a></li>
+        <li ><a href="index.php"><img id="MyProfile" name="ID" src="<?php
+
+                echo "profilePictures/".$AvatarLink['Avatar'];
+
+                ?>" alt="profielfoto"></a></li>
     </ul>
+
 </nav>
+

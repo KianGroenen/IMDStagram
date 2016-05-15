@@ -64,7 +64,6 @@ nav ul li:nth-child(3){
 #MyProfile{
     width: 80px;
     height: 80px;
-    /*background-image: url("../images/MyProfile.png");*/
     backgruond-size: cover;
     background-size: 100%;
     background-repeat: no-repeat;

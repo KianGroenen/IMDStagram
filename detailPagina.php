@@ -1,6 +1,8 @@
 <?php
-    include_once("classes/Db.class.php");
-    include_once("classes/User.class.php");
+session_start();
+
+include_once("classes/Db.class.php");
+include_once("classes/User.class.php");
 
 ?>
 <!doctype html>
