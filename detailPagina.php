@@ -14,6 +14,21 @@ $feedback = "";
 $id = $_GET["id"];
 //print_r($id);
 
+
+//sheck private
+$PDO = Db::getInstance();
+        $stmt = $PDO->prepare("SELECT * FROM users WHERE ID = :id");
+        $stmt->bindParam(":id", $id);
+        $stmt->execute();
+        $data = $stmt->fetch();
+        if($data["prive"]==1){
+            
+            //sheck of ge followed
+            
+        }
+
+
+
 $PostsOphalen = new GetDetailPosts();
 $PostsOphalen->UserID = $id;
 $posts = $PostsOphalen->getPosts();
@@ -34,6 +49,23 @@ if (isset($_POST["submitDelete"])) {
         $feedback = $e->getMessage();
     }
 }
+
+
+//volgen
+if (isset($_POST["followID"])){
+    
+    print_r($_POST);
+    print_r($_SESSION);
+    
+    $PDO = Db::getInstance();
+    $stmt2 = $PDO->prepare("INSERT INTO follows (followed_user_ID, follower_ID) VALUES (:followed, :follower);");
+    $stmt2->bindValue(':followed', $_POST["followID"]);
+	$stmt2->bindValue(':follower', $_SESSION["ID"]);
+    $stmt2->execute();
+    
+    
+}
+
 
 ?>
 <!doctype html>
@@ -59,7 +91,10 @@ if (isset($_POST["submitDelete"])) {
         <div id="topProfiel">
             <?php echo '<img src="profilePictures/'.$data['Avatar'].'" alt="avatarProfielFoto" id="profielfoto">' ?>
             <?php echo "<p id='detailUsername'>".$data['username']."</p>" ?>
-            <a href="#" id="volgen">Volgen</a>
+            <form action="" method="post">
+               <input type="hidden" name="followID" value="<?php echo $id; ?>">
+                <input type="submit" value="volgen" id="volgen">
+            </form>
         </div>
         <div id="gallerij">
             <?php if(!empty($posts)) {

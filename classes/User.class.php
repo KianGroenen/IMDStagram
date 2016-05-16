@@ -178,9 +178,21 @@ class User
         $stmt->bindValue(':profilepicture', $this->m_sProfilePicture, PDO::PARAM_STR);
 
  		if ($stmt->execute())
- 		{
- 			//query went OK!
+        {
+            
+        /*$stmt2 = $PDO->prepare("SELECT * FROM users WHERE username = :username");
+        $stmt2->bindParam(":username", $this->m_sUserName);
+        $stmt2->execute();
+        $data = $stmt->fetch(); 
+        $this->m_sID = $data["ID"];
+            
+        $stmt3 = $PDO->prepare("INSERT INTO follows (followed_user_ID, follower_ID) VALUES (:followed, :follower);");
+ 		$stmt3->bindValue(':followed', $this->m_sID);
+ 		$stmt3->bindValue(':follower', $this->m_sID);*/
+            
+            //query went OK!
             header("Location: login.php");
+                        
  		}
 		else
  		{
