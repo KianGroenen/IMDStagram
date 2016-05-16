@@ -64,9 +64,6 @@ nav ul li:nth-child(3){
 #MyProfile{
     width: 80px;
     height: 80px;
-    backgruond-size: cover;
-    background-size: 100%;
-    background-repeat: no-repeat;
     border: 5px solid black;
     cursor: pointer;
 

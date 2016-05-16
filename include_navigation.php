@@ -58,11 +58,7 @@ if (isset($_POST['submit'])) {
     }
 }
 
-
-
-?>
-
-<nav>
+?><nav>
     <ul>
         <li id="IG_logo"><a href="index.php"></a></li>
         <li><form  method="post" action="detailPagina.php?go" id="searchform">
@@ -70,11 +66,7 @@ if (isset($_POST['submit'])) {
                 <input  type="submit" name="submit" value="Search">
             </form>
         </li>
-        <li ><a href="index.php"><img id="MyProfile" name="ID" src="<?php
-
-                echo "profilePictures/".$AvatarLink['Avatar'];
-
-                ?>" alt="profielfoto"></a></li>
+        <li ><a href="detailPagina.php?id=<?php echo $user ?>" <img id="MyProfile" name="ID" src="<?php echo "profilePictures/".$AvatarLink['Avatar']; ?>" alt="profielfoto"></a></li>
     </ul>
 
 </nav>
