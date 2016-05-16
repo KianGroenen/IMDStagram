@@ -54,14 +54,18 @@ if (isset($_POST["submitDelete"])) {
 //volgen
 if (isset($_POST["followID"])){
     
-    print_r($_POST);
-    print_r($_SESSION);
+    if($_POST["knopVolgen"]=="volgen"){
+     
+   /* print_r($_POST);
+    print_r($_SESSION);*/
     
     $PDO = Db::getInstance();
     $stmt2 = $PDO->prepare("INSERT INTO follows (followed_user_ID, follower_ID) VALUES (:followed, :follower);");
     $stmt2->bindValue(':followed', $_POST["followID"]);
 	$stmt2->bindValue(':follower', $_SESSION["ID"]);
-    $stmt2->execute();
+    //$stmt2->execute();
+        
+    }
     
     
 }
@@ -83,6 +87,28 @@ if (isset($_POST["followID"])){
     ?>
     </title>
     <link rel="stylesheet" href="css/style.css">
+    <script type="text/javascript">
+        
+        var knop = document.getElementById("knopVolgen");
+        
+        knop.addEventListener("click",function(){
+            
+            if($knop.value == "volgen"){
+            $knop.value = "volgend";
+            }
+            if($knop.value == "volgend"){
+            $knop.value = "volgen";
+            }
+            
+        });
+            
+            
+            
+            
+            
+        
+        
+    </script>
 </head>
 <body>
     <?php include_once("include_navigation.php"); ?>
@@ -92,8 +118,8 @@ if (isset($_POST["followID"])){
             <?php echo '<img src="profilePictures/'.$data['Avatar'].'" alt="avatarProfielFoto" id="profielfoto">' ?>
             <?php echo "<p id='detailUsername'>".$data['username']."</p>" ?>
             <form action="" method="post">
-               <input type="hidden" name="followID" value="<?php echo $id; ?>">
-                <input type="submit" value="volgen" id="volgen">
+               <input type="hidden"  name="followID" value="<?php echo $id; ?>">
+                <input type="submit" id="knopVolgen" value="volgen" name="knopVolgen">
             </form>
         </div>
         <div id="gallerij">

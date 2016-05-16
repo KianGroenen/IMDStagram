@@ -24,9 +24,9 @@ if(!empty($_POST))
        /* echo  $uploadName . "<br>"
             . $uploadType . "<br>"
             . $uploadTmpName . "<br>"
-            . $uploadError . "<br>";
+            . $uploadError . "<br>";*/
         
-        print_r($_FILES);*/
+        print_r($_FILES);
         try
         {
         $upload = new Post($user, $_POST["postText"], $imageType, $imageName, $imageTmpName, $imageError, $location);
@@ -44,7 +44,7 @@ if(!empty($_POST))
             $cv = $upload->leesUit();
             echo($cv);*/
             
-            //$upload->post();
+            $upload->post();
         }
         catch(exception $e)
         {
