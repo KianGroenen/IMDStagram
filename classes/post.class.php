@@ -9,8 +9,9 @@ include_once("classes/Db.class.php");
         private $m_sImageName;
         private $m_sImageTmpName;
         private $m_bImageError;
+        private $m_sLocation;
         
-        public function __construct($p_iUserID, $p_sPostText, $p_sImageType, $p_sImageName, $p_sImageTmpName, $p_bImageError)
+        public function __construct($p_iUserID, $p_sPostText, $p_sImageType, $p_sImageName, $p_sImageTmpName, $p_bImageError, $p_sLocation)
         {
             
             $this->m_iUserID = $p_iUserID;
@@ -19,13 +20,13 @@ include_once("classes/Db.class.php");
             $this->m_sImageName = $p_sImageName;
             $this->m_sImageTmpName = $p_sImageTmpName;
             $this->m_bImageError = $p_bImageError;
+            $this->m_sLocation = $p_sLocation;
             
         }
         
         public function __set($p_sProperty, $p_vValue)
         {
-            
-            switch ($p_sProperty)
+            switch($p_sProperty)
             {
             
                 case 'UserID':    
@@ -40,11 +41,14 @@ include_once("classes/Db.class.php");
                 case 'ImageName':
                     $this->m_sImageName = $p_vValue;
                 break;
-                case 'ImageTmpName';
+                case 'ImageTmpName':
                     $this->m_sImageTmpName = $p_vValue;
                 break;
-                case 'ImageError';
-                    $this->m_sImageError = $p_vValue;
+                case 'ImageError':
+                    $this->m_bImageError = $p_vValue;
+                break;
+                case 'Location':
+                    $this->m_sLocation = $p_vValue;
                 break;
                     
             }
@@ -69,11 +73,14 @@ include_once("classes/Db.class.php");
                 case 'ImageName':
                     return($this->m_sImageName);
                 break;
-                case 'ImageTmpName';
+                case 'ImageTmpName':
                     return($this->m_sImageTmpName);
                 break;
-                case 'ImageError';
-                    return($this->m_sImageError);
+                case 'ImageError':
+                    return($this->m_bImageError);
+                break;
+                case 'Location':
+                    return($this->m_sLocation);
                 break;
                     
             }
@@ -109,15 +116,24 @@ include_once("classes/Db.class.php");
             // uploaden naar databank
             $conn = Db::getInstance();
         
-            $statement = $conn->prepare("INSERT INTO posts (user_ID, tekst, foto) VALUES (:user_ID, :tekst, :foto)");
+            $statement = $conn->prepare("INSERT INTO posts (user_ID, tekst, foto, location) VALUES (:user_ID, :tekst, :foto, :location)");
             $statement->bindvalue(":user_ID", $this->m_iUserID);
             $statement->bindvalue(":tekst", $this->m_sPostText);
             $statement->bindvalue(":foto", $this->m_sImageName);
+            $statement->bindvalue(":location", $this->m_sLocation);
             if($statement->execute())
             {
                 return($statement);
             }
         }
+        
+        public function leesUit(){
+            
+            $cv = "UserID " . $this->m_iUserID . " PostText " . $this->m_sPostText . " ImageType " . $this->m_sImageType . " ImageName ".$this->m_sImageName . " ImageTmpName " . $this->m_sImageTmpName . " ImageError " . $this->m_sImageError;
+        
+            return($cv);
+        }
+        
         
     }
 
