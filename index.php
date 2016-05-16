@@ -16,7 +16,7 @@ spl_autoload_register(function ($class_name) {
     $timeline->UserID = $_SESSION['ID'];
     $toonArr = $timeline->Show();
     $j = 0;
-    ?><pre><?php print_r($toonArr[1]['ID']); ?></pre><?php
+    
 
     if (isset($_POST['submit'])) {
         if (isset($_GET['go'])) {

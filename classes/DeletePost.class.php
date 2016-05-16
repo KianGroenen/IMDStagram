@@ -42,6 +42,7 @@ include_once("classes/Db.class.php");
             
             if ($stmt->execute()) {
                 //query went OK!
+                header("location: detailPagina.php?id=".$this->m_sUserID);
             }
             else
             {
