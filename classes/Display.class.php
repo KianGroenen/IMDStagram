@@ -23,7 +23,7 @@ include_once("Db.class.php");
         
         public function Show() {
             $PDO = Db::getInstance();
-            $sql = "SELECT DISTINCT posts.ID, users.username, posts.foto, posts.tekst FROM posts LEFT JOIN users ON users.ID = posts.user_ID LEFT JOIN follows ON follows.followed_user_ID = posts.user_ID WHERE follows.follower_ID = :var OR posts.user_ID = :var ORDER BY posts.user_ID";
+            $sql = "SELECT DISTINCT posts.ID, users.username, posts.foto, posts.tekst, posts.dateCreated FROM posts LEFT JOIN users ON users.ID = posts.user_ID LEFT JOIN follows ON follows.followed_user_ID = posts.user_ID WHERE follows.follower_ID = :var OR posts.user_ID = :var ORDER BY posts.dateCreated DESC";
             $stmt = $PDO->prepare($sql);
             
             $stmt->bindValue(':var', $this->m_sUserID, PDO::PARAM_STR);
