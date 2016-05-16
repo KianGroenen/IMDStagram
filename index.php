@@ -1,14 +1,22 @@
 <?php
 session_start();
-print_r($_SESSION);
 $loggedInUser = $_SESSION['ID'];
 
     include_once("classes/Db.class.php");
     include_once("classes/Search.class.php");
     include_once("classes/User.class.php");
     include_once("classes/LikePost.class.php");
+spl_autoload_register(function ($class_name) {
+    include 'classes/' .$class_name . '.class.php';
+});
 
     $like = new LikePost();
+    
+    $timeline = new Display();
+    $timeline->UserID = $_SESSION['ID'];
+    $toonArr = $timeline->Show();
+    $j = 0;
+    ?><pre><?php print_r($toonArr[1]['ID']); ?></pre><?php
 
     if (isset($_POST['submit'])) {
         if (isset($_GET['go'])) {
@@ -61,7 +69,6 @@ if(!empty($_POST["hartje"])){
 }
 
 
-
 ?><!doctype html>
 <html lang="en">
 <head>
@@ -75,9 +82,15 @@ if(!empty($_POST["hartje"])){
 <?php include_once("include_navigation.php"); ?>
 
     <div id="gallerij">
-
-
-
+        <?php foreach ($toonArr as $toon): ?>
+        <div>
+           <!-- DIT MOET NOG GEFIXD WORDE FABIO -->
+            <a href="FIXDITFABIO.php?id=<?php echo $toonArr[$j]["ID"] ?>">
+                <p><?php echo $toonArr[$j]["username"] ?></p>
+                <img src="postImages/<?php echo $toonArr[$j]["foto"] ?>" alt="<?php echo $toonArr[$j]["tekst"]; $j++; ?>">
+            </a>
+        </div>
+        <?php endforeach; ?>
     </div>
 </body>
 </html>
