@@ -29,7 +29,8 @@ if(!empty($_POST))
 
         			if($user->UsernameAvailable()) {
             				$user->Create(); //INSERT USER INTO TABLE
-
+                              
+                        
             				$feedback = "Thanks for signing up!";
             			} else {
             				$feedback = "Username has already been taken!";

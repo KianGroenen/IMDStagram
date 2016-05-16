@@ -55,16 +55,34 @@ if (isset($_POST["submitDelete"])) {
 if (isset($_POST["followID"])){
     
     if($_POST["knopVolgen"]=="volgen"){
-     
-   /* print_r($_POST);
-    print_r($_SESSION);*/
-    
-    $PDO = Db::getInstance();
-    $stmt2 = $PDO->prepare("INSERT INTO follows (followed_user_ID, follower_ID) VALUES (:followed, :follower);");
-    $stmt2->bindValue(':followed', $_POST["followID"]);
-	$stmt2->bindValue(':follower', $_SESSION["ID"]);
-    //$stmt2->execute();
         
+        echo $_POST["followID"]."<br>".$_SESSION["ID"]."<br>";
+        
+        $follower = $_SESSION["ID"];
+     
+    $PDO = Db::getInstance();
+        $stmt2 = $PDO->prepare("SELECT * FROM follows WHERE followed_user_ID = :followed AND follower_ID = :follower");
+        $stmt2->bindParam(":followed", $_POST["followID"]);
+        $stmt2->bindParam(":follower",$follower);
+        $stmt2->execute();
+        $result = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+        print_r($result);
+        
+        if($stmt2->rowCount()>0){
+            
+            $stmt3=$PDO->prepare("DELETE FROM follows WHERE followed_user_ID = :followed AND follower_ID = :follower");
+        $stmt3->bindParam(":followed", $_POST["followID"]);
+        $stmt3->bindParam(":follower",$_SESSION["ID"]);
+        $stmt3->execute();
+            
+        }
+        else{
+    
+            $stmt4 = $PDO->prepare("INSERT INTO follows (followed_user_ID, follower_ID) VALUES (:followed, :follower);");
+            $stmt4->bindValue(':followed', $_POST["followID"]);
+	        $stmt4->bindValue(':follower', $_SESSION["ID"]);
+            $stmt4->execute();
+        }
     }
     
     
@@ -87,25 +105,20 @@ if (isset($_POST["followID"])){
     ?>
     </title>
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
     <script type="text/javascript">
         
-        var knop = document.getElementById("knopVolgen");
-        
-        knop.addEventListener("click",function(){
-            
-            if($knop.value == "volgen"){
-            $knop.value = "volgend";
+        $("#knopvolgen").click(function(){
+            if(this.text==="volgen"){
+                this.text = "volgend";
+                
             }
-            if($knop.value == "volgend"){
-            $knop.value = "volgen";
+            if(this.text==="volgend"){
+                this.text = "volgen";
+                
             }
             
         });
-            
-            
-            
-            
-            
         
         
     </script>

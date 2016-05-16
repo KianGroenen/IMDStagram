@@ -176,23 +176,33 @@ class User
  		$stmt->bindValue(':email', $this->m_sEmail, PDO::PARAM_STR);
         $stmt->bindValue(':prive', $this->m_bPrive, PDO::PARAM_BOOL);
         $stmt->bindValue(':profilepicture', $this->m_sProfilePicture, PDO::PARAM_STR);
-
+        
  		if ($stmt->execute())
         {
             
-        /*$stmt2 = $PDO->prepare("SELECT * FROM users WHERE username = :username");
+             $PDO = Db::getInstance();
+        $stmt2 = $PDO->prepare("SELECT * FROM users WHERE username = :username");
         $stmt2->bindParam(":username", $this->m_sUserName);
         $stmt2->execute();
-        $data = $stmt->fetch(); 
-        $this->m_sID = $data["ID"];
+        $data = $stmt2->fetch(); 
+        $volgID = $data["ID"];
             
         $stmt3 = $PDO->prepare("INSERT INTO follows (followed_user_ID, follower_ID) VALUES (:followed, :follower);");
- 		$stmt3->bindValue(':followed', $this->m_sID);
- 		$stmt3->bindValue(':follower', $this->m_sID);*/
+ 		$stmt3->bindValue(':followed', $volgID);
+ 		$stmt3->bindValue(':follower', $volgID);
+        if ($stmt3->execute())
+        {
             
             //query went OK!
             header("Location: login.php");
-                        
+           
+ 		}
+		else
+ 		{
+    			// er zijn geen query resultaten, dus query is gefaald
+    			throw new Exception('Could not create your account!');
+ 		}
+           
  		}
 		else
  		{
@@ -205,6 +215,7 @@ class User
         session_start();
         $_SESSION["ID"] = $id;
     }
+    
 
 }
 ?>
