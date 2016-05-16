@@ -36,7 +36,7 @@ class GetDetailPosts
 
         $conn = Db::getInstance();
 
-        $stmt = $conn->prepare("SELECT foto, tekst FROM posts WHERE user_ID = :user_ID");
+        $stmt = $conn->prepare("SELECT * FROM posts WHERE user_ID = :user_ID");
         $stmt->bindValue(":user_ID", $this->m_iUserID);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
