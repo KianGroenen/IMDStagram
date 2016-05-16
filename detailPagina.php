@@ -10,6 +10,7 @@ spl_autoload_register(function ($class_name) {
     include 'classes/' .$class_name . '.class.php';
 });
 $feedback = "";
+$checkPrivate= 0;
 //id ophalen via browser bar om juiste gallerijfoto's te laden
 $id = $_GET["id"];
 //print_r($id);
@@ -24,6 +25,24 @@ $PDO = Db::getInstance();
         if($data["prive"]==1){
             
             //sheck of ge followed
+            $PDO = Db::getInstance();
+        $stmt2 = $PDO->prepare("SELECT * FROM follows WHERE followed_user_ID = :followed AND follower_ID = :follower");
+        $stmt2->bindParam(":followed", $_POST["followID"]);
+        $stmt2->bindParam(":follower",$_SESSION["ID"]);
+        $stmt2->execute();
+        $result = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+        //print_r($result);
+        
+        if($stmt2->rowCount()>0){
+            
+           
+            $checkPrivate = 1;
+            echo "<h1>This profile is private</h1>";
+        }
+            else{
+                $checkPrivate = 0;
+                
+            }
             
         }
 
@@ -56,7 +75,7 @@ if (isset($_POST["followID"])){
     
     if($_POST["knopVolgen"]=="volgen"){
         
-        echo $_POST["followID"]."<br>".$_SESSION["ID"]."<br>";
+        //echo $_POST["followID"]."<br>".$_SESSION["ID"]."<br>";
         
         $follower = $_SESSION["ID"];
      
@@ -66,7 +85,7 @@ if (isset($_POST["followID"])){
         $stmt2->bindParam(":follower",$follower);
         $stmt2->execute();
         $result = $stmt2->fetchAll(PDO::FETCH_ASSOC);
-        print_r($result);
+        //print_r($result);
         
         if($stmt2->rowCount()>0){
             
@@ -135,6 +154,9 @@ if (isset($_POST["followID"])){
                 <input type="submit" id="knopVolgen" value="volgen" name="knopVolgen">
             </form>
         </div>
+        <?php
+            if($checkPrivate==0):
+        ?>
         <div id="gallerij">
             <?php if(!empty($posts)) {
                 foreach ($posts as $post) {
@@ -150,6 +172,9 @@ if (isset($_POST["followID"])){
                 }
             }?>
         </div>
+        <?php
+            endif;
+        ?>
     </div>
 </body>
 </html>
