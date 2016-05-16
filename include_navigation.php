@@ -47,10 +47,12 @@ if (isset($_POST['submit'])) {
             ?><!--<pre><?php print_r($resultSearch); ?></pre>--><?php
             //create foreach loop and loop through result set
             $i = 0;
-            foreach($resultSearch as $row) {
-                echo "<a href='detailPagina.php' rel='detailPagina' id='searchResult'>".$resultSearch[$i]['username']."<a/>";
+            foreach($resultSearch as $row => $p) {
+                echo "<a href=detailPagina.php?id=".$p['ID']." rel='detailPagina' id='searchResult'>"
+                    .$resultSearch[$i]['username']."<a/>";
                 echo "<br />";
                 $i++;
+                print_r($p['ID']);
             }
         }
     }

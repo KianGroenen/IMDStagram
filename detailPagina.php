@@ -5,18 +5,22 @@ include_once("classes/Db.class.php");
 include_once("classes/User.class.php");
 include_once("classes/Post.class.php");
 include_once("classes/GetDetailPosts.class.php");
+include_once("classes/DeletePost.class.php");
 spl_autoload_register(function ($class_name) {
     include 'classes/' .$class_name . '.class.php';
 });
 $feedback = "";
-$PostsOphalen = new GetDetailPosts();
-$PostsOphalen->UserID = $_SESSION['ID'];
-$posts = $PostsOphalen->getPosts();
+//id ophalen via browser bar om juiste gallerijfoto's te laden
+$id = $_GET["id"];
+//print_r($id);
 
+$PostsOphalen = new GetDetailPosts();
+$PostsOphalen->UserID = $id;
+$posts = $PostsOphalen->getPosts();
 //print_r($posts);
 $i = 0;
 
-if (isset($_POST["submit"])) {
+if (isset($_POST["submitDelete"])) {
     $weg = new DeletePost();
     $weg->Identiteit = $_POST["ID"];
     echo "dit is ID" . $_POST["ID"];
@@ -39,7 +43,8 @@ if (isset($_POST["submit"])) {
     <title>
         <?php
     $PDO = Db::getInstance();
-    $stmt = $PDO->prepare("SELECT * FROM users WHERE ID = $_SESSION[ID]");
+    $stmt = $PDO->prepare("SELECT * FROM users WHERE ID = :id");
+    $stmt->bindParam(":id", $id);
     $stmt->execute();
     $data = $stmt->fetch();
     echo $data['username'];
@@ -61,9 +66,9 @@ if (isset($_POST["submit"])) {
                 foreach ($posts as $post) {
                     echo '<img class="gallerijPost" src="postImages/'. $posts[$i]["foto"] . '" alt="' . $posts[$i]["tekst"] . '" >';
                     if ($_SESSION['ID'] == $posts[$i]["user_ID"]) {
-                        echo '<form method="post" action="detailPagina.php" id="deleteform">';
+                        echo '<form method="post" action="#" id="deleteform">';
                         echo '<input type="hidden" name="ID" value="' . $posts[$i]["ID"] . '">';
-                        echo '<input type="submit" name="submit" value="Delete">';
+                        echo '<input type="submit" name="submitDelete" value="Delete">';
                         echo '</form>';   
                     }
                     echo "<br />";
